@@ -1,0 +1,30 @@
+{
+  "name": "usace-hydropower-scraper",
+  "version": "1.0.0",
+  "description": "Automated scraper for USACE Hydropower Generation Schedules",
+  "main": "scripts/scrape-usace.js",
+  "scripts": {
+    "scrape": "node scripts/scrape-usace.js",
+    "test": "node scripts/test-scraper.js"
+  },
+  "dependencies": {
+    "puppeteer": "^21.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_SCRAPER_ACCOUNT/usace-data-collector.git"
+  },
+  "keywords": [
+    "usace",
+    "hydropower",
+    "buford-dam",
+    "water-data",
+    "scraper",
+    "github-actions"
+  ],
+  "author": "USACE Data Scraper",
+  "license": "MIT"
+}
