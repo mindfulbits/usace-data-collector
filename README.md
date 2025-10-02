@@ -2,7 +2,7 @@
 
 Automated GitHub Actions scraper for USACE Hydropower Generation Schedules, specifically targeting **Buford Dam/Lake Sidney Lanier** data.
 
-## 🎯 Purpose
+## 🎯 Purpose!
 
 This repository automatically scrapes hydropower generation schedules from the [USACE Hydropower website](https://spatialdata.usace.army.mil/hydropower/) every 6 hours and makes the data available as JSON files for consumption by other applications.
 
