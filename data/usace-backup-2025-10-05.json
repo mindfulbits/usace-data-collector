@@ -1,173 +1,9 @@
 {
-  "timestamp": "2025-10-05T12:29:20.490Z",
+  "timestamp": "2025-10-05T18:24:31.055Z",
   "plant": "Buford Dam/Lake Sidney Lanier",
   "plantId": "2",
   "source": "USACE Hydropower Website",
   "schedules": {
-    "10/1/2025": {
-      "date": "10/1/2025",
-      "dateValue": "10/1/2025",
-      "success": true,
-      "periods": [
-        {
-          "time": "12:00 am - 1:00 am",
-          "generation": 4,
-          "status": "base",
-          "source": "USACE Real-time"
-        },
-        {
-          "time": "1:00 am - 2:00 am",
-          "generation": 4,
-          "status": "base",
-          "source": "USACE Real-time"
-        },
-        {
-          "time": "2:00 am - 3:00 am",
-          "generation": 4,
-          "status": "base",
-          "source": "USACE Real-time"
-        },
-        {
-          "time": "3:00 am - 4:00 am",
-          "generation": 4,
-          "status": "base",
-          "source": "USACE Real-time"
-        },
-        {
-          "time": "4:00 am - 5:00 am",
-          "generation": 4,
-          "status": "base",
-          "source": "USACE Real-time"
-        },
-        {
-          "time": "5:00 am - 6:00 am",
-          "generation": 4,
-          "status": "base",
-          "source": "USACE Real-time"
-        },
-        {
-          "time": "6:00 am - 7:00 am",
-          "generation": 4,
-          "status": "base",
-          "source": "USACE Real-time"
-        },
-        {
-          "time": "7:00 am - 8:00 am",
-          "generation": 4,
-          "status": "base",
-          "source": "USACE Real-time"
-        },
-        {
-          "time": "8:00 am - 9:00 am",
-          "generation": 4,
-          "status": "base",
-          "source": "USACE Real-time"
-        },
-        {
-          "time": "9:00 am - 10:00 am",
-          "generation": 4,
-          "status": "base",
-          "source": "USACE Real-time"
-        },
-        {
-          "time": "10:00 am - 11:00 am",
-          "generation": 4,
-          "status": "base",
-          "source": "USACE Real-time"
-        },
-        {
-          "time": "11:00 am - 12:00 pm",
-          "generation": 4,
-          "status": "base",
-          "source": "USACE Real-time"
-        },
-        {
-          "time": "12:00 pm - 1:00 pm",
-          "generation": 4,
-          "status": "base",
-          "source": "USACE Real-time"
-        },
-        {
-          "time": "1:00 pm - 2:00 pm",
-          "generation": 4,
-          "status": "base",
-          "source": "USACE Real-time"
-        },
-        {
-          "time": "2:00 pm - 3:00 pm",
-          "generation": 4,
-          "status": "base",
-          "source": "USACE Real-time"
-        },
-        {
-          "time": "3:00 pm - 4:00 pm",
-          "generation": 4,
-          "status": "base",
-          "source": "USACE Real-time"
-        },
-        {
-          "time": "4:00 pm - 5:00 pm",
-          "generation": 4,
-          "status": "base",
-          "source": "USACE Real-time"
-        },
-        {
-          "time": "5:00 pm - 6:00 pm",
-          "generation": 42,
-          "status": "active",
-          "source": "USACE Real-time"
-        },
-        {
-          "time": "6:00 pm - 7:00 pm",
-          "generation": 117,
-          "status": "peak",
-          "source": "USACE Real-time"
-        },
-        {
-          "time": "7:00 pm - 8:00 pm",
-          "generation": 42,
-          "status": "active",
-          "source": "USACE Real-time"
-        },
-        {
-          "time": "8:00 pm - 9:00 pm",
-          "generation": 4,
-          "status": "base",
-          "source": "USACE Real-time"
-        },
-        {
-          "time": "9:00 pm - 10:00 pm",
-          "generation": 4,
-          "status": "base",
-          "source": "USACE Real-time"
-        },
-        {
-          "time": "10:00 pm - 11:00 pm",
-          "generation": 4,
-          "status": "base",
-          "source": "USACE Real-time"
-        },
-        {
-          "time": "11:00 pm - 12:00 pm",
-          "generation": 4,
-          "status": "base",
-          "source": "USACE Real-time"
-        },
-        {
-          "time": "35 - 67",
-          "generation": 4,
-          "status": "base",
-          "source": "USACE Real-time"
-        },
-        {
-          "time": "68 - 127",
-          "generation": 6,
-          "status": "base",
-          "source": "USACE Real-time"
-        }
-      ],
-      "scrapedAt": "2025-10-05T12:29:21.509Z"
-    },
     "10/2/2025": {
       "date": "10/2/2025",
       "dateValue": "10/2/2025",
@@ -330,7 +166,7 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2025-10-05T12:29:22.523Z"
+      "scrapedAt": "2025-10-05T18:24:32.078Z"
     },
     "10/3/2025": {
       "date": "10/3/2025",
@@ -494,7 +330,7 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2025-10-05T12:29:23.538Z"
+      "scrapedAt": "2025-10-05T18:24:33.092Z"
     },
     "10/4/2025": {
       "date": "10/4/2025",
@@ -658,7 +494,7 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2025-10-05T12:29:24.551Z"
+      "scrapedAt": "2025-10-05T18:24:34.107Z"
     },
     "10/5/2025": {
       "date": "10/5/2025",
@@ -822,15 +658,179 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2025-10-05T12:29:25.570Z"
+      "scrapedAt": "2025-10-05T18:24:35.121Z"
+    },
+    "10/6/2025": {
+      "date": "10/6/2025",
+      "dateValue": "10/6/2025",
+      "success": true,
+      "periods": [
+        {
+          "time": "12:00 am - 1:00 am",
+          "generation": 4,
+          "status": "base",
+          "source": "USACE Real-time"
+        },
+        {
+          "time": "1:00 am - 2:00 am",
+          "generation": 4,
+          "status": "base",
+          "source": "USACE Real-time"
+        },
+        {
+          "time": "2:00 am - 3:00 am",
+          "generation": 4,
+          "status": "base",
+          "source": "USACE Real-time"
+        },
+        {
+          "time": "3:00 am - 4:00 am",
+          "generation": 4,
+          "status": "base",
+          "source": "USACE Real-time"
+        },
+        {
+          "time": "4:00 am - 5:00 am",
+          "generation": 4,
+          "status": "base",
+          "source": "USACE Real-time"
+        },
+        {
+          "time": "5:00 am - 6:00 am",
+          "generation": 4,
+          "status": "base",
+          "source": "USACE Real-time"
+        },
+        {
+          "time": "6:00 am - 7:00 am",
+          "generation": 4,
+          "status": "base",
+          "source": "USACE Real-time"
+        },
+        {
+          "time": "7:00 am - 8:00 am",
+          "generation": 4,
+          "status": "base",
+          "source": "USACE Real-time"
+        },
+        {
+          "time": "8:00 am - 9:00 am",
+          "generation": 4,
+          "status": "base",
+          "source": "USACE Real-time"
+        },
+        {
+          "time": "9:00 am - 10:00 am",
+          "generation": 4,
+          "status": "base",
+          "source": "USACE Real-time"
+        },
+        {
+          "time": "10:00 am - 11:00 am",
+          "generation": 4,
+          "status": "base",
+          "source": "USACE Real-time"
+        },
+        {
+          "time": "11:00 am - 12:00 pm",
+          "generation": 4,
+          "status": "base",
+          "source": "USACE Real-time"
+        },
+        {
+          "time": "12:00 pm - 1:00 pm",
+          "generation": 4,
+          "status": "base",
+          "source": "USACE Real-time"
+        },
+        {
+          "time": "1:00 pm - 2:00 pm",
+          "generation": 4,
+          "status": "base",
+          "source": "USACE Real-time"
+        },
+        {
+          "time": "2:00 pm - 3:00 pm",
+          "generation": 4,
+          "status": "base",
+          "source": "USACE Real-time"
+        },
+        {
+          "time": "3:00 pm - 4:00 pm",
+          "generation": 4,
+          "status": "base",
+          "source": "USACE Real-time"
+        },
+        {
+          "time": "4:00 pm - 5:00 pm",
+          "generation": 44,
+          "status": "active",
+          "source": "USACE Real-time"
+        },
+        {
+          "time": "5:00 pm - 6:00 pm",
+          "generation": 44,
+          "status": "active",
+          "source": "USACE Real-time"
+        },
+        {
+          "time": "6:00 pm - 7:00 pm",
+          "generation": 92,
+          "status": "peak",
+          "source": "USACE Real-time"
+        },
+        {
+          "time": "7:00 pm - 8:00 pm",
+          "generation": 44,
+          "status": "active",
+          "source": "USACE Real-time"
+        },
+        {
+          "time": "8:00 pm - 9:00 pm",
+          "generation": 44,
+          "status": "active",
+          "source": "USACE Real-time"
+        },
+        {
+          "time": "9:00 pm - 10:00 pm",
+          "generation": 4,
+          "status": "base",
+          "source": "USACE Real-time"
+        },
+        {
+          "time": "10:00 pm - 11:00 pm",
+          "generation": 4,
+          "status": "base",
+          "source": "USACE Real-time"
+        },
+        {
+          "time": "11:00 pm - 12:00 pm",
+          "generation": 4,
+          "status": "base",
+          "source": "USACE Real-time"
+        },
+        {
+          "time": "35 - 67",
+          "generation": 4,
+          "status": "base",
+          "source": "USACE Real-time"
+        },
+        {
+          "time": "68 - 127",
+          "generation": 6,
+          "status": "base",
+          "source": "USACE Real-time"
+        }
+      ],
+      "scrapedAt": "2025-10-05T18:24:36.140Z"
     }
   },
   "statistics": {
-    "totalDays": 7,
-    "scrapedAt": "2025-10-05T12:29:20.490Z",
+    "totalDays": 8,
+    "scrapedAt": "2025-10-05T18:24:31.055Z",
     "totalPeriods": 130,
-    "averageGeneration": 12,
-    "peakGeneration": 117,
+    "averageGeneration": 13,
+    "peakGeneration": 92,
     "minGeneration": 4
   }
 }
