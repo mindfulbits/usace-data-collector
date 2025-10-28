@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-10-28T06:29:03.083Z",
+  "timestamp": "2025-10-28T12:33:57.320Z",
   "plant": "Buford Dam/Lake Sidney Lanier",
   "plantId": "2",
   "source": "USACE Hydropower Website",
@@ -166,7 +166,7 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2025-10-28T06:29:04.104Z"
+      "scrapedAt": "2025-10-28T12:33:58.340Z"
     },
     "10/25/2025": {
       "date": "10/25/2025",
@@ -330,7 +330,7 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2025-10-28T06:29:05.120Z"
+      "scrapedAt": "2025-10-28T12:33:59.354Z"
     },
     "10/26/2025": {
       "date": "10/26/2025",
@@ -494,7 +494,7 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2025-10-28T06:29:06.134Z"
+      "scrapedAt": "2025-10-28T12:34:00.368Z"
     },
     "10/27/2025": {
       "date": "10/27/2025",
@@ -658,7 +658,7 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2025-10-28T06:29:07.153Z"
+      "scrapedAt": "2025-10-28T12:34:01.385Z"
     },
     "10/28/2025": {
       "date": "10/28/2025",
@@ -787,20 +787,20 @@
         },
         {
           "time": "8:00 pm - 9:00 pm",
-          "generation": 67,
+          "generation": 124,
           "status": "peak",
           "source": "USACE Real-time"
         },
         {
           "time": "9:00 pm - 10:00 pm",
-          "generation": 4,
-          "status": "base",
+          "generation": 67,
+          "status": "peak",
           "source": "USACE Real-time"
         },
         {
           "time": "10:00 pm - 11:00 pm",
-          "generation": 4,
-          "status": "base",
+          "generation": 67,
+          "status": "peak",
           "source": "USACE Real-time"
         },
         {
@@ -822,14 +822,14 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2025-10-28T06:29:08.172Z"
+      "scrapedAt": "2025-10-28T12:34:02.400Z"
     }
   },
   "statistics": {
     "totalDays": 7,
-    "scrapedAt": "2025-10-28T06:29:03.083Z",
+    "scrapedAt": "2025-10-28T12:33:57.320Z",
     "totalPeriods": 130,
-    "averageGeneration": 12,
+    "averageGeneration": 14,
     "peakGeneration": 124,
     "minGeneration": 4
   }
