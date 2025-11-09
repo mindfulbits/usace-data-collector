@@ -1,18 +1,18 @@
 {
-  "lastUpdated": "2025-11-09T12:30:21.072Z",
+  "lastUpdated": "2025-11-09T18:23:19.461Z",
   "plant": "Buford Dam/Lake Sidney Lanier",
   "totalSchedules": 5,
   "statistics": {
-    "totalDays": 7,
-    "scrapedAt": "2025-11-09T12:30:21.072Z",
+    "totalDays": 8,
+    "scrapedAt": "2025-11-09T18:23:19.461Z",
     "totalPeriods": 130,
-    "averageGeneration": 15,
-    "peakGeneration": 124,
+    "averageGeneration": 14,
+    "peakGeneration": 127,
     "minGeneration": 4
   },
   "latestData": {
-    "date": "11/5/2025",
-    "dateValue": "11/5/2025",
+    "date": "11/6/2025",
+    "dateValue": "11/6/2025",
     "success": true,
     "periods": [
       {
@@ -53,14 +53,14 @@
       },
       {
         "time": "6:00 am - 7:00 am",
-        "generation": 124,
-        "status": "peak",
+        "generation": 4,
+        "status": "base",
         "source": "USACE Real-time"
       },
       {
         "time": "7:00 am - 8:00 am",
-        "generation": 124,
-        "status": "peak",
+        "generation": 4,
+        "status": "base",
         "source": "USACE Real-time"
       },
       {
@@ -101,20 +101,20 @@
       },
       {
         "time": "2:00 pm - 3:00 pm",
-        "generation": 4,
-        "status": "base",
+        "generation": 77,
+        "status": "peak",
         "source": "USACE Real-time"
       },
       {
         "time": "3:00 pm - 4:00 pm",
-        "generation": 4,
-        "status": "base",
+        "generation": 77,
+        "status": "peak",
         "source": "USACE Real-time"
       },
       {
         "time": "4:00 pm - 5:00 pm",
-        "generation": 4,
-        "status": "base",
+        "generation": 77,
+        "status": "peak",
         "source": "USACE Real-time"
       },
       {
@@ -137,14 +137,14 @@
       },
       {
         "time": "8:00 pm - 9:00 pm",
-        "generation": 124,
-        "status": "peak",
+        "generation": 4,
+        "status": "base",
         "source": "USACE Real-time"
       },
       {
         "time": "9:00 pm - 10:00 pm",
-        "generation": 64,
-        "status": "peak",
+        "generation": 4,
+        "status": "base",
         "source": "USACE Real-time"
       },
       {
@@ -172,6 +172,6 @@
         "source": "USACE Real-time"
       }
     ],
-    "scrapedAt": "2025-11-09T12:30:22.093Z"
+    "scrapedAt": "2025-11-09T18:23:20.481Z"
   }
 }
