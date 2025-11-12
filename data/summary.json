@@ -1,18 +1,18 @@
 {
-  "lastUpdated": "2025-11-12T12:34:50.518Z",
+  "lastUpdated": "2025-11-12T18:27:12.827Z",
   "plant": "Buford Dam/Lake Sidney Lanier",
   "totalSchedules": 5,
   "statistics": {
-    "totalDays": 7,
-    "scrapedAt": "2025-11-12T12:34:50.518Z",
+    "totalDays": 8,
+    "scrapedAt": "2025-11-12T18:27:12.827Z",
     "totalPeriods": 130,
     "averageGeneration": 14,
     "peakGeneration": 127,
     "minGeneration": 4
   },
   "latestData": {
-    "date": "11/8/2025",
-    "dateValue": "11/8/2025",
+    "date": "11/9/2025",
+    "dateValue": "11/9/2025",
     "success": true,
     "periods": [
       {
@@ -41,20 +41,20 @@
       },
       {
         "time": "4:00 am - 5:00 am",
-        "generation": 4,
-        "status": "base",
+        "generation": 67,
+        "status": "peak",
         "source": "USACE Real-time"
       },
       {
         "time": "5:00 am - 6:00 am",
-        "generation": 4,
-        "status": "base",
+        "generation": 67,
+        "status": "peak",
         "source": "USACE Real-time"
       },
       {
         "time": "6:00 am - 7:00 am",
-        "generation": 4,
-        "status": "base",
+        "generation": 67,
+        "status": "peak",
         "source": "USACE Real-time"
       },
       {
@@ -77,20 +77,20 @@
       },
       {
         "time": "10:00 am - 11:00 am",
-        "generation": 67,
-        "status": "peak",
+        "generation": 4,
+        "status": "base",
         "source": "USACE Real-time"
       },
       {
         "time": "11:00 am - 12:00 pm",
-        "generation": 67,
-        "status": "peak",
+        "generation": 4,
+        "status": "base",
         "source": "USACE Real-time"
       },
       {
         "time": "12:00 pm - 1:00 pm",
-        "generation": 67,
-        "status": "peak",
+        "generation": 4,
+        "status": "base",
         "source": "USACE Real-time"
       },
       {
@@ -172,6 +172,6 @@
         "source": "USACE Real-time"
       }
     ],
-    "scrapedAt": "2025-11-12T12:34:51.541Z"
+    "scrapedAt": "2025-11-12T18:27:13.847Z"
   }
 }
