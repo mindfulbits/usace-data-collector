@@ -1,60 +1,60 @@
 {
-  "lastUpdated": "2025-11-20T12:34:25.620Z",
+  "lastUpdated": "2025-11-20T18:26:15.173Z",
   "plant": "Buford Dam/Lake Sidney Lanier",
   "totalSchedules": 5,
   "statistics": {
-    "totalDays": 7,
-    "scrapedAt": "2025-11-20T12:34:25.620Z",
+    "totalDays": 8,
+    "scrapedAt": "2025-11-20T18:26:15.173Z",
     "totalPeriods": 130,
     "averageGeneration": 16,
     "peakGeneration": 124,
     "minGeneration": 4
   },
   "latestData": {
-    "date": "11/16/2025",
-    "dateValue": "11/16/2025",
+    "date": "11/17/2025",
+    "dateValue": "11/17/2025",
     "success": true,
     "periods": [
       {
         "time": "12:00 am - 1:00 am",
-        "generation": 44,
-        "status": "active",
+        "generation": 4,
+        "status": "base",
         "source": "USACE Real-time"
       },
       {
         "time": "1:00 am - 2:00 am",
-        "generation": 56,
-        "status": "peak",
+        "generation": 4,
+        "status": "base",
         "source": "USACE Real-time"
       },
       {
         "time": "2:00 am - 3:00 am",
-        "generation": 56,
-        "status": "peak",
+        "generation": 4,
+        "status": "base",
         "source": "USACE Real-time"
       },
       {
         "time": "3:00 am - 4:00 am",
-        "generation": 56,
-        "status": "peak",
+        "generation": 4,
+        "status": "base",
         "source": "USACE Real-time"
       },
       {
         "time": "4:00 am - 5:00 am",
-        "generation": 56,
-        "status": "peak",
+        "generation": 4,
+        "status": "base",
         "source": "USACE Real-time"
       },
       {
         "time": "5:00 am - 6:00 am",
-        "generation": 55,
-        "status": "peak",
+        "generation": 4,
+        "status": "base",
         "source": "USACE Real-time"
       },
       {
         "time": "6:00 am - 7:00 am",
-        "generation": 51,
-        "status": "peak",
+        "generation": 4,
+        "status": "base",
         "source": "USACE Real-time"
       },
       {
@@ -77,8 +77,8 @@
       },
       {
         "time": "10:00 am - 11:00 am",
-        "generation": 4,
-        "status": "base",
+        "generation": 64,
+        "status": "peak",
         "source": "USACE Real-time"
       },
       {
@@ -119,20 +119,20 @@
       },
       {
         "time": "5:00 pm - 6:00 pm",
-        "generation": 4,
-        "status": "base",
+        "generation": 67,
+        "status": "peak",
         "source": "USACE Real-time"
       },
       {
         "time": "6:00 pm - 7:00 pm",
-        "generation": 4,
-        "status": "base",
+        "generation": 124,
+        "status": "peak",
         "source": "USACE Real-time"
       },
       {
         "time": "7:00 pm - 8:00 pm",
-        "generation": 4,
-        "status": "base",
+        "generation": 124,
+        "status": "peak",
         "source": "USACE Real-time"
       },
       {
@@ -172,6 +172,6 @@
         "source": "USACE Real-time"
       }
     ],
-    "scrapedAt": "2025-11-20T12:34:26.641Z"
+    "scrapedAt": "2025-11-20T18:26:16.194Z"
   }
 }
