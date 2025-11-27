@@ -1,18 +1,18 @@
 {
-  "lastUpdated": "2025-11-26T18:23:35.629Z",
+  "lastUpdated": "2025-11-27T01:11:15.314Z",
   "plant": "Buford Dam/Lake Sidney Lanier",
   "totalSchedules": 5,
   "statistics": {
-    "totalDays": 7,
-    "scrapedAt": "2025-11-26T18:23:35.629Z",
+    "totalDays": 8,
+    "scrapedAt": "2025-11-27T01:11:15.314Z",
     "totalPeriods": 130,
-    "averageGeneration": 11,
+    "averageGeneration": 10,
     "peakGeneration": 125,
     "minGeneration": 4
   },
   "latestData": {
-    "date": "11/22/2025",
-    "dateValue": "11/22/2025",
+    "date": "11/23/2025",
+    "dateValue": "11/23/2025",
     "success": true,
     "periods": [
       {
@@ -101,38 +101,38 @@
       },
       {
         "time": "2:00 pm - 3:00 pm",
-        "generation": 4,
-        "status": "base",
+        "generation": 64,
+        "status": "peak",
         "source": "USACE Real-time"
       },
       {
         "time": "3:00 pm - 4:00 pm",
-        "generation": 4,
-        "status": "base",
+        "generation": 64,
+        "status": "peak",
         "source": "USACE Real-time"
       },
       {
         "time": "4:00 pm - 5:00 pm",
+        "generation": 64,
+        "status": "peak",
+        "source": "USACE Real-time"
+      },
+      {
+        "time": "5:00 pm - 6:00 pm",
         "generation": 4,
         "status": "base",
         "source": "USACE Real-time"
       },
       {
-        "time": "5:00 pm - 6:00 pm",
-        "generation": 64,
-        "status": "peak",
-        "source": "USACE Real-time"
-      },
-      {
         "time": "6:00 pm - 7:00 pm",
-        "generation": 74,
-        "status": "peak",
+        "generation": 4,
+        "status": "base",
         "source": "USACE Real-time"
       },
       {
         "time": "7:00 pm - 8:00 pm",
-        "generation": 64,
-        "status": "peak",
+        "generation": 4,
+        "status": "base",
         "source": "USACE Real-time"
       },
       {
@@ -172,6 +172,6 @@
         "source": "USACE Real-time"
       }
     ],
-    "scrapedAt": "2025-11-26T18:23:36.651Z"
+    "scrapedAt": "2025-11-27T01:11:16.335Z"
   }
 }
