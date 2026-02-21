@@ -54,7 +54,6 @@ function fetchPage(url, options = {}) {
                     : `${parsedUrl.protocol}//${parsedUrl.hostname}${loc}`;
                 return resolve(fetchPage(redirectUrl, { ...options, method: 'GET', body: undefined }));
             }
-
             let data = '';
             res.setEncoding('utf8');
             res.on('data', chunk => data += chunk);
@@ -63,7 +62,6 @@ function fetchPage(url, options = {}) {
 
         req.on('error', reject);
         req.setTimeout(30000, () => req.destroy(new Error('Request timed out after 30s')));
-
         if (options.body) req.write(options.body);
         req.end();
     });
@@ -102,7 +100,7 @@ function extractSelectOptions(html, selectName) {
     while ((m = re.exec(selMatch[1])) !== null) {
         const value = m[1].trim();
         const text = m[2].trim();
-        if (value) options.push({ value, text });
+        if (value && value !== '0') options.push({ value, text });
     }
     return options;
 }
@@ -116,76 +114,45 @@ function extractCookies(headers) {
 
 // ---------------------------------------------------------------------------
 // Table parser
+// FIX: The page has nested tables inside <caption> tags. We target GridView1
+// specifically by its id, then parse only its rows — avoiding the nested
+// caption table that was causing the parser to match the wrong table first.
 // ---------------------------------------------------------------------------
 
 function parseGenerationTable(html) {
     const periods = [];
-    const tableRe = /<table[\s\S]*?>([\s\S]*?)<\/table>/gi;
-    let tableMatch;
 
-    while ((tableMatch = tableRe.exec(html)) !== null) {
-        const rows = [...tableMatch[1].matchAll(/<tr[^>]*>([\s\S]*?)<\/tr>/gi)];
-        for (let i = 1; i < rows.length; i++) {
-            const cells = [...rows[i][1].matchAll(/<t[dh][^>]*>([\s\S]*?)<\/t[dh]>/gi)]
-                .map(c => c[1].replace(/<[^>]+>/g, '').trim());
-            if (cells.length >= 2) {
-                const timeText = cells[0];
-                const genMatch = cells[1].match(/[\d.]+/);
-                if (timeText && genMatch) {
-                    const generation = parseFloat(genMatch[0]);
-                    if (generation > 0) {
-                        periods.push({
-                            time: timeText,
-                            generation,
-                            status: generation > 50 ? 'peak' : generation > 10 ? 'active' : 'base',
-                            source: 'USACE Real-time'
-                        });
-                    }
-                }
+    // Target GridView1 specifically — that's the schedule table id from the HTML
+    const gridMatch = html.match(/<table[^>]+id="GridView1"[^>]*>([\s\S]*?)<\/table>/i);
+    if (!gridMatch) {
+        console.log('  ⚠️ GridView1 table not found in HTML');
+        return periods;
+    }
+
+    const tableHtml = gridMatch[1];
+    const rows = [...tableHtml.matchAll(/<tr[^>]*>([\s\S]*?)<\/tr>/gi)];
+
+    // Skip the header row (index 0)
+    for (let i = 1; i < rows.length; i++) {
+        const cells = [...rows[i][1].matchAll(/<td[^>]*>([\s\S]*?)<\/td>/gi)]
+            .map(c => c[1].replace(/<[^>]+>/g, '').trim());
+
+        if (cells.length >= 2) {
+            const timeText = cells[0];
+            const genMatch = cells[1].match(/^[\d.]+$/);
+            if (timeText && genMatch) {
+                const generation = parseFloat(cells[1]);
+                periods.push({
+                    time: timeText,
+                    generation,
+                    status: generation > 50 ? 'peak' : generation > 10 ? 'active' : 'base',
+                    source: 'USACE Real-time'
+                });
             }
         }
-        if (periods.length > 0) break;
     }
 
     return periods;
-}
-
-// ---------------------------------------------------------------------------
-// Debug helper — logs HTML structure to console and saves file
-// ---------------------------------------------------------------------------
-
-async function saveDebugInfo(outputDir, filename, html) {
-    try {
-        await fs.writeFile(path.join(outputDir, filename), html);
-        console.log(`  🔍 Debug file saved: ${filename} (${html.length} bytes)`);
-
-        // Log structural info so we can diagnose from Actions log alone
-        const tableCount = (html.match(/<table/gi) || []).length;
-        const formCount  = (html.match(/<form/gi)  || []).length;
-        const selectCount = (html.match(/<select/gi) || []).length;
-        console.log(`  📋 Structure: ${tableCount} tables, ${formCount} forms, ${selectCount} selects`);
-
-        // List every submit button and its name/value
-        const submitButtons = (html.match(/<input[^>]*type="submit"[^>]*/gi) || []);
-        console.log(`  🔘 Submit buttons (${submitButtons.length}):`);
-        submitButtons.forEach(btn => {
-            const nameMatch  = btn.match(/name="([^"]*)"/i);
-            const valueMatch = btn.match(/value="([^"]*)"/i);
-            console.log(`     name="${nameMatch ? nameMatch[1] : 'N/A'}" value="${valueMatch ? valueMatch[1] : 'N/A'}"`);
-        });
-
-        // Log all select element names
-        const selects = (html.match(/<select[^>]*name="([^"]*)"[^>]*/gi) || []);
-        console.log(`  📝 Select elements: ${selects.map(s => { const m = s.match(/name="([^"]*)"/i); return m ? m[1] : '?'; }).join(', ')}`);
-
-        // Check for any numbers that look like MW generation values (1-999)
-        const numMatches = [...html.matchAll(/>\s*(\d{1,3})\s*</g)].map(m => m[1]);
-        const plausibleMW = numMatches.filter(n => parseInt(n) > 0 && parseInt(n) < 1000);
-        console.log(`  ⚡ Numbers in HTML that could be MW values: ${[...new Set(plausibleMW)].slice(0, 20).join(', ')}`);
-
-    } catch (e) {
-        console.log(`  Could not save debug file: ${e.message}`);
-    }
 }
 
 // ---------------------------------------------------------------------------
@@ -198,7 +165,6 @@ class USACEScraper {
         this.bufordPlantId = BUFORD_PLANT_ID;
         this.outputDir = path.join(__dirname, '..', 'data');
         this.cookie = '';
-        this.debugSaved = false;
     }
 
     async init() {
@@ -218,11 +184,11 @@ class USACEScraper {
         console.log(`  Cookie: ${this.cookie ? 'yes' : 'none'}`);
 
         if (!formFields.__VIEWSTATE) {
-            await saveDebugInfo(this.outputDir, 'debug-initial.html', initial.body);
+            await fs.writeFile(path.join(this.outputDir, 'debug-initial.html'), initial.body);
             throw new Error('No __VIEWSTATE found — see debug-initial.html');
         }
 
-        // Step 2: POST plant selection
+        // Step 2: POST plant selection to populate date dropdown
         console.log(`🎯 Posting Plant_Selector = ${this.bufordPlantId}...`);
         const plantBody = new URLSearchParams({
             __EVENTTARGET:        'Plant_Selector',
@@ -246,11 +212,13 @@ class USACEScraper {
         if (newCookie) this.cookie = newCookie;
         formFields = extractFormFields(plantResp.body);
 
+        // FIX: Date values from the dropdown are "2/18/2026" format, not "2026-02-18".
+        // We use them exactly as-is from the <option value="..."> attributes.
         const dates = extractSelectOptions(plantResp.body, 'Date_Selector');
-        console.log(`📅 Found ${dates.length} dates`);
+        console.log(`📅 Found ${dates.length} dates: ${dates.map(d => d.value).join(', ')}`);
 
         if (dates.length === 0) {
-            await saveDebugInfo(this.outputDir, 'debug-plant-resp.html', plantResp.body);
+            await fs.writeFile(path.join(this.outputDir, 'debug-plant-resp.html'), plantResp.body);
             throw new Error('No dates in Date_Selector — see debug-plant-resp.html');
         }
 
@@ -263,14 +231,17 @@ class USACEScraper {
             statistics: { totalDays: dates.length, scrapedAt: new Date().toISOString() }
         };
 
-        const datesToScrape = dates.slice(-5);
-        for (const dateInfo of datesToScrape) {
+        // Scrape all available dates (site only ever shows ~7 days)
+        for (const dateInfo of dates) {
             console.log(`📊 Fetching ${dateInfo.text}...`);
             try {
                 const sched = await this.scrapeDateData(dateInfo, formFields);
                 if (sched._newFormFields) { formFields = sched._newFormFields; delete sched._newFormFields; }
+
+                // Use the date value as the key, converted to YYYY-MM-DD for consistency
+                const keyDate = this.toISODate(dateInfo.value);
                 if (sched.periods.length > 0) {
-                    results.schedules[dateInfo.value] = sched;
+                    results.schedules[keyDate] = sched;
                     console.log(`  ✅ ${sched.periods.length} periods`);
                 } else {
                     console.log(`  ⚠️ No periods found`);
@@ -295,64 +266,47 @@ class USACEScraper {
         return results;
     }
 
+    // Convert "2/18/2026" -> "2026-02-18"
+    toISODate(dateStr) {
+        const [m, d, y] = dateStr.split('/');
+        return `${y}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`;
+    }
+
     async scrapeDateData(dateInfo, formFields) {
-        // Try multiple possible submit button names in case Button1 isn't right
-        const buttonNames = ['Button1', 'btnSubmit', 'Submit', 'SubmitButton', 'btnGo', 'btnView'];
+        // POST with the date value exactly as it appears in the dropdown (e.g. "2/18/2026")
+        // and trigger via Date_Selector onchange postback, same as the plant selector
+        const body = new URLSearchParams({
+            __EVENTTARGET:        'Date_Selector',
+            __EVENTARGUMENT:      '',
+            __LASTFOCUS:          '',
+            __VIEWSTATE:          formFields.__VIEWSTATE          || '',
+            __VIEWSTATEGENERATOR: formFields.__VIEWSTATEGENERATOR || '',
+            __EVENTVALIDATION:    formFields.__EVENTVALIDATION    || '',
+            Plant_Selector:       this.bufordPlantId,
+            Date_Selector:        dateInfo.value
+        }).toString();
 
-        for (const buttonName of buttonNames) {
-            const body = new URLSearchParams({
-                __EVENTTARGET:        '',
-                __EVENTARGUMENT:      '',
-                __LASTFOCUS:          '',
-                __VIEWSTATE:          formFields.__VIEWSTATE          || '',
-                __VIEWSTATEGENERATOR: formFields.__VIEWSTATEGENERATOR || '',
-                __EVENTVALIDATION:    formFields.__EVENTVALIDATION    || '',
-                Plant_Selector:       this.bufordPlantId,
-                Date_Selector:        dateInfo.value,
-                [buttonName]:         'Submit'
-            }).toString();
+        const resp = await fetchPage(this.baseUrl, {
+            method: 'POST',
+            body,
+            cookie: this.cookie,
+            headers: { 'Referer': this.baseUrl }
+        });
 
-            const resp = await fetchPage(this.baseUrl, {
-                method: 'POST',
-                body,
-                cookie: this.cookie,
-                headers: { 'Referer': this.baseUrl }
-            });
+        if (resp.status !== 200) throw new Error(`Date POST returned HTTP ${resp.status}`);
+        const newCookie = extractCookies(resp.headers);
+        if (newCookie) this.cookie = newCookie;
 
-            if (resp.status !== 200) throw new Error(`Date POST returned HTTP ${resp.status}`);
-            const newCookie = extractCookies(resp.headers);
-            if (newCookie) this.cookie = newCookie;
+        const newFormFields = extractFormFields(resp.body);
+        const periods = parseGenerationTable(resp.body);
 
-            const newFormFields = extractFormFields(resp.body);
-            const periods = parseGenerationTable(resp.body);
-
-            // Always save debug HTML for the very first date request
-            if (!this.debugSaved) {
-                await saveDebugInfo(this.outputDir, 'debug-date-response.html', resp.body);
-                this.debugSaved = true;
-            }
-
-            if (periods.length > 0) {
-                console.log(`  (button name "${buttonName}" worked)`);
-                return {
-                    date: dateInfo.text,
-                    dateValue: dateInfo.value,
-                    success: true,
-                    periods,
-                    scrapedAt: new Date().toISOString(),
-                    _newFormFields: Object.keys(newFormFields).length > 0 ? newFormFields : formFields
-                };
-            }
-        }
-
-        // No button name worked
         return {
             date: dateInfo.text,
             dateValue: dateInfo.value,
-            success: false,
-            periods: [],
+            success: true,
+            periods,
             scrapedAt: new Date().toISOString(),
-            _newFormFields: formFields
+            _newFormFields: Object.keys(newFormFields).length > 0 ? newFormFields : formFields
         };
     }
 
