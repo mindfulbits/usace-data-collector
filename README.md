@@ -152,7 +152,7 @@ Edit `.github/workflows/scrape-usace.yml` to change scraping frequency:
 ```yaml
 on:
   schedule:
-    - cron: '0 */6 * * *'  # Every 6 hours
+    - cron: '0 */4 * * *'  # Every 4 hours
     - cron: '0 8,20 * * *'  # Twice daily at 8 AM and 8 PM
 ```
 
