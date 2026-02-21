@@ -129,17 +129,23 @@ function parseGenerationTable(html) {
         return periods;
     }
 
+    console.log('  ✅ GridView1 table found');
     const tableHtml = gridMatch[1];
 
     // Remove the caption section entirely to avoid nested table rows
     const tableWithoutCaption = tableHtml.replace(/<caption[^>]*>[\s\S]*?<\/caption>/gi, '');
 
     const rows = [...tableWithoutCaption.matchAll(/<tr[^>]*>([\s\S]*?)<\/tr>/gi)];
+    console.log(`  ✅ Found ${rows.length} rows (including header)`);
 
     // Skip the header row (index 0)
     for (let i = 1; i < rows.length; i++) {
         const cells = [...rows[i][1].matchAll(/<td[^>]*>([\s\S]*?)<\/td>/gi)]
             .map(c => c[1].replace(/<[^>]+>/g, '').trim());
+
+        if (i <= 3) {
+            console.log(`  Row ${i}: Found ${cells.length} cells - [${cells.join(', ')}]`);
+        }
 
         if (cells.length >= 2) {
             const timeText = cells[0];
@@ -152,10 +158,13 @@ function parseGenerationTable(html) {
                     status: generation > 50 ? 'peak' : generation > 10 ? 'active' : 'base',
                     source: 'USACE Real-time'
                 });
+            } else if (i <= 3) {
+                console.log(`  Row ${i}: Skipped - timeText="${timeText}", genMatch=${!!genMatch}`);
             }
         }
     }
 
+    console.log(`  ✅ Parsed ${periods.length} periods total`);
     return periods;
 }
 
@@ -301,6 +310,9 @@ class USACEScraper {
         const newCookie = extractCookies(resp.headers);
         if (newCookie) this.cookie = newCookie;
 
+        // Save debug HTML for troubleshooting
+        await fs.writeFile(path.join(this.outputDir, 'debug-date-response.html'), resp.body);
+
         const newFormFields = extractFormFields(resp.body);
         const periods = parseGenerationTable(resp.body);
 
@@ -381,13 +393,15 @@ class USACEScraper {
             data = await this.scrapeData();
             if (!data || Object.keys(data.schedules).length === 0) {
                 console.warn('⚠️ No data scraped, using fallback');
+                console.warn(`   Reason: ${!data ? 'data is null/undefined' : 'schedules object is empty'}`);
                 data = this.createFallbackData();
             }
             await this.saveData(data);
             console.log(`✅ Completed in ${Date.now() - start}ms — ${Object.keys(data.schedules).length} schedules`);
             return data;
         } catch (err) {
-            console.error('❌ Scraping failed:', err.message);
+            console.error('❌ Scraping failed with exception:', err.message);
+            console.error('   Stack trace:', err.stack);
             try {
                 data = this.createFallbackData();
                 await this.saveData(data);
