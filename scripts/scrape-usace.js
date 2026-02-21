@@ -112,41 +112,23 @@ function extractCookies(headers) {
     return arr.map(c => c.split(';')[0]).join('; ');
 }
 
-// ---------------------------------------------------------------------------
-// Table parser
-// FIX: The page has nested tables inside <caption> tags. We target GridView1
-// specifically by its id, then parse only its rows — avoiding the nested
-// caption table that was causing the parser to match the wrong table first.
-// ---------------------------------------------------------------------------
-
 function parseGenerationTable(html) {
     const periods = [];
 
-    // Target GridView1 specifically — that's the schedule table id from the HTML
-    // Use greedy match to capture all the way to the closing </table>, not the nested one in caption
+    // Use greedy match to capture all content to the closing </table>, not the nested one in <caption>
     const gridMatch = html.match(/<table[^>]+id="GridView1"[^>]*>([\s\S]*)<\/table>/i);
-    if (!gridMatch) {
-        console.log('  ⚠️ GridView1 table not found in HTML');
-        return periods;
-    }
+    if (!gridMatch) return periods;
 
-    console.log('  ✅ GridView1 table found');
     const tableHtml = gridMatch[1];
 
-    // Remove the caption section entirely to avoid nested table rows
+    // Remove the caption section to avoid parsing nested table rows
     const tableWithoutCaption = tableHtml.replace(/<caption[^>]*>[\s\S]*?<\/caption>/gi, '');
-
     const rows = [...tableWithoutCaption.matchAll(/<tr[^>]*>([\s\S]*?)<\/tr>/gi)];
-    console.log(`  ✅ Found ${rows.length} rows (including header)`);
 
     // Skip the header row (index 0)
     for (let i = 1; i < rows.length; i++) {
         const cells = [...rows[i][1].matchAll(/<td[^>]*>([\s\S]*?)<\/td>/gi)]
             .map(c => c[1].replace(/<[^>]+>/g, '').trim());
-
-        if (i <= 3) {
-            console.log(`  Row ${i}: Found ${cells.length} cells - [${cells.join(', ')}]`);
-        }
 
         if (cells.length >= 2) {
             const timeText = cells[0];
@@ -159,13 +141,10 @@ function parseGenerationTable(html) {
                     status: generation > 50 ? 'peak' : generation > 10 ? 'active' : 'base',
                     source: 'USACE Real-time'
                 });
-            } else if (i <= 3) {
-                console.log(`  Row ${i}: Skipped - timeText="${timeText}", genMatch=${!!genMatch}`);
             }
         }
     }
 
-    console.log(`  ✅ Parsed ${periods.length} periods total`);
     return periods;
 }
 
@@ -194,8 +173,6 @@ class USACEScraper {
 
         this.cookie = extractCookies(initial.headers);
         let formFields = extractFormFields(initial.body);
-        console.log(`  Tokens found: ${Object.keys(formFields).join(', ')}`);
-        console.log(`  Cookie: ${this.cookie ? 'yes' : 'none'}`);
 
         if (!formFields.__VIEWSTATE) {
             await fs.writeFile(path.join(this.outputDir, 'debug-initial.html'), initial.body);
@@ -226,10 +203,8 @@ class USACEScraper {
         if (newCookie) this.cookie = newCookie;
         formFields = extractFormFields(plantResp.body);
 
-        // FIX: Date values from the dropdown are "2/18/2026" format, not "2026-02-18".
-        // We use them exactly as-is from the <option value="..."> attributes.
         const dates = extractSelectOptions(plantResp.body, 'Date_Selector');
-        console.log(`📅 Found ${dates.length} dates: ${dates.map(d => d.value).join(', ')}`);
+        console.log(`📅 Found ${dates.length} dates`);
 
         if (dates.length === 0) {
             await fs.writeFile(path.join(this.outputDir, 'debug-plant-resp.html'), plantResp.body);
@@ -280,12 +255,6 @@ class USACEScraper {
         return results;
     }
 
-    // Convert "2/18/2026" -> "2026-02-18"
-    toISODate(dateStr) {
-        const [m, d, y] = dateStr.split('/');
-        return `${y}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`;
-    }
-
     async scrapeDateData(dateInfo, formFields) {
         // POST with the date value exactly as it appears in the dropdown (e.g. "2/18/2026")
         // and trigger via Date_Selector onchange postback, same as the plant selector
@@ -311,9 +280,6 @@ class USACEScraper {
         const newCookie = extractCookies(resp.headers);
         if (newCookie) this.cookie = newCookie;
 
-        // Save debug HTML for troubleshooting
-        await fs.writeFile(path.join(this.outputDir, 'debug-date-response.html'), resp.body);
-
         const newFormFields = extractFormFields(resp.body);
         const periods = parseGenerationTable(resp.body);
 
@@ -333,9 +299,8 @@ class USACEScraper {
         const backupFile = path.join(this.outputDir, `usace-backup-${today}.json`);
 
         await fs.writeFile(outputFile, JSON.stringify(data, null, 2));
-        console.log(`💾 Saved ${outputFile}`);
         await fs.writeFile(backupFile, JSON.stringify(data, null, 2));
-        console.log(`💾 Backup saved`);
+        console.log(`💾 Data saved`);
 
         const summary = {
             lastUpdated: data.timestamp,
@@ -395,15 +360,13 @@ class USACEScraper {
             data = await this.scrapeData();
             if (!data || Object.keys(data.schedules).length === 0) {
                 console.warn('⚠️ No data scraped, using fallback');
-                console.warn(`   Reason: ${!data ? 'data is null/undefined' : 'schedules object is empty'}`);
                 data = this.createFallbackData();
             }
             await this.saveData(data);
             console.log(`✅ Completed in ${Date.now() - start}ms — ${Object.keys(data.schedules).length} schedules`);
             return data;
         } catch (err) {
-            console.error('❌ Scraping failed with exception:', err.message);
-            console.error('   Stack trace:', err.stack);
+            console.error('❌ Scraping failed:', err.message);
             try {
                 data = this.createFallbackData();
                 await this.saveData(data);
