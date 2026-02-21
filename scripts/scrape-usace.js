@@ -123,7 +123,8 @@ function parseGenerationTable(html) {
     const periods = [];
 
     // Target GridView1 specifically — that's the schedule table id from the HTML
-    const gridMatch = html.match(/<table[^>]+id="GridView1"[^>]*>([\s\S]*?)<\/table>/i);
+    // Use greedy match to capture all the way to the closing </table>, not the nested one in caption
+    const gridMatch = html.match(/<table[^>]+id="GridView1"[^>]*>([\s\S]*)<\/table>/i);
     if (!gridMatch) {
         console.log('  ⚠️ GridView1 table not found in HTML');
         return periods;
