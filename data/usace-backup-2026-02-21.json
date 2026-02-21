@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-02-21T20:53:39.195Z",
+  "timestamp": "2026-02-21T21:01:04.775Z",
   "plant": "Buford Dam/Lake Sidney Lanier",
   "plantId": "2",
   "source": "USACE Hydropower Website",
   "schedules": {
-    "2026-02-16": {
+    "2/16/2026": {
       "date": "2/16/2026",
       "dateValue": "2/16/2026",
       "success": true,
@@ -154,9 +154,9 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2026-02-21T20:53:39.525Z"
+      "scrapedAt": "2026-02-21T21:01:05.111Z"
     },
-    "2026-02-17": {
+    "2/17/2026": {
       "date": "2/17/2026",
       "dateValue": "2/17/2026",
       "success": true,
@@ -306,9 +306,9 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2026-02-21T20:53:39.854Z"
+      "scrapedAt": "2026-02-21T21:01:05.373Z"
     },
-    "2026-02-18": {
+    "2/18/2026": {
       "date": "2/18/2026",
       "dateValue": "2/18/2026",
       "success": true,
@@ -458,9 +458,9 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2026-02-21T20:53:40.182Z"
+      "scrapedAt": "2026-02-21T21:01:05.680Z"
     },
-    "2026-02-19": {
+    "2/19/2026": {
       "date": "2/19/2026",
       "dateValue": "2/19/2026",
       "success": true,
@@ -610,9 +610,9 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2026-02-21T20:53:40.438Z"
+      "scrapedAt": "2026-02-21T21:01:05.939Z"
     },
-    "2026-02-20": {
+    "2/20/2026": {
       "date": "2/20/2026",
       "dateValue": "2/20/2026",
       "success": true,
@@ -762,9 +762,9 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2026-02-21T20:53:40.726Z"
+      "scrapedAt": "2026-02-21T21:01:06.501Z"
     },
-    "2026-02-21": {
+    "2/21/2026": {
       "date": "2/21/2026",
       "dateValue": "2/21/2026",
       "success": true,
@@ -914,9 +914,9 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2026-02-21T20:53:41.086Z"
+      "scrapedAt": "2026-02-21T21:01:06.760Z"
     },
-    "2026-02-22": {
+    "2/22/2026": {
       "date": "2/22/2026",
       "dateValue": "2/22/2026",
       "success": true,
@@ -1066,12 +1066,12 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2026-02-21T20:53:41.344Z"
+      "scrapedAt": "2026-02-21T21:01:07.020Z"
     }
   },
   "statistics": {
     "totalDays": 7,
-    "scrapedAt": "2026-02-21T20:53:39.195Z",
+    "scrapedAt": "2026-02-21T21:01:04.775Z",
     "totalPeriods": 168,
     "averageGeneration": 10,
     "peakGeneration": 120,
