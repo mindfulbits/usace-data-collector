@@ -206,10 +206,10 @@ The scraper uses a lightweight HTTP-based approach:
 ## 📈 Monitoring
 
 ### Success Indicators
-- ✅ New commits every 6 hours with data updates
+- ✅ New commits every 4 hours with data updates
 - ✅ `data/usace-latest.json` has `"source": "USACE Hydropower Website"` (not "Fallback")
 - ✅ No error badges in **Actions** tab
-- ✅ `timestamp` is recent (within 6 hours)
+- ✅ `timestamp` is recent (within 4 hours)
 
 ### Data Quality Checks
 - `statistics.totalPeriods` should be ~168 (7 days × 24 hours)
