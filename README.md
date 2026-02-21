@@ -4,11 +4,11 @@ Automated GitHub Actions scraper for USACE Hydropower Generation Schedules, spec
 
 ## 🎯 Purpose
 
-This repository automatically scrapes hydropower generation schedules from the [USACE Hydropower website](https://spatialdata.usace.army.mil/hydropower/) every 6 hours and makes the data available as JSON files for consumption by other applications.
+This repository automatically scrapes hydropower generation schedules from the [USACE Hydropower website](https://spatialdata.usace.army.mil/hydropower/) every 4 hours and makes the data available as JSON files for consumption by other applications.
 
 **Features:**
 - ⚡ Lightweight HTTP-based scraper (no browser required)
-- 🔄 Runs every 6 hours via GitHub Actions
+- 🔄 Runs every 4 hours via GitHub Actions
 - 📦 Uses only built-in Node.js modules (no dependencies)
 - 💾 Provides JSON data with 24 hourly generation periods
 - 📊 Includes daily backups and summary statistics
