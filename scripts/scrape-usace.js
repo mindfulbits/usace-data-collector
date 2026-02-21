@@ -252,8 +252,8 @@ class USACEScraper {
                 const sched = await this.scrapeDateData(dateInfo, formFields);
                 if (sched._newFormFields) { formFields = sched._newFormFields; delete sched._newFormFields; }
 
-                // Use the date value as the key, converted to YYYY-MM-DD for consistency
-                const keyDate = this.toISODate(dateInfo.value);
+                // Use the original date value as the key for backwards compatibility (e.g., "2/16/2026")
+                const keyDate = dateInfo.value;
                 if (sched.periods.length > 0) {
                     results.schedules[keyDate] = sched;
                     console.log(`  ✅ ${sched.periods.length} periods`);
@@ -351,7 +351,8 @@ class USACEScraper {
         console.log('🔄 Creating fallback data...');
         const today = new Date();
         const yesterday = new Date(today.getTime() - 86400000);
-        const fmt = d => d.toISOString().split('T')[0];
+        // Use M/D/YYYY format for backwards compatibility with V1
+        const fmt = d => d.toLocaleDateString('en-US');
         return {
             timestamp: new Date().toISOString(),
             plant: 'Buford Dam/Lake Sidney Lanier',
@@ -360,7 +361,7 @@ class USACEScraper {
             note: 'Scraper encountered issues - using fallback data',
             schedules: {
                 [fmt(yesterday)]: {
-                    date: yesterday.toLocaleDateString('en-US'), dateValue: fmt(yesterday), success: false,
+                    date: fmt(yesterday), dateValue: fmt(yesterday), success: false,
                     periods: [
                         { time: '5:00 pm - 6:00 pm', generation: 42,  status: 'active', source: 'Fallback' },
                         { time: '6:00 pm - 7:00 pm', generation: 117, status: 'peak',   source: 'Fallback' },
@@ -369,7 +370,7 @@ class USACEScraper {
                     scrapedAt: new Date().toISOString()
                 },
                 [fmt(today)]: {
-                    date: today.toLocaleDateString('en-US'), dateValue: fmt(today), success: false,
+                    date: fmt(today), dateValue: fmt(today), success: false,
                     periods: [
                         { time: '5:00 pm - 6:00 pm', generation: 64, status: 'active', source: 'Fallback' },
                         { time: '6:00 pm - 7:00 pm', generation: 64, status: 'active', source: 'Fallback' },
