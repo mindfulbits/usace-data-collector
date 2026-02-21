@@ -130,7 +130,11 @@ function parseGenerationTable(html) {
     }
 
     const tableHtml = gridMatch[1];
-    const rows = [...tableHtml.matchAll(/<tr[^>]*>([\s\S]*?)<\/tr>/gi)];
+
+    // Remove the caption section entirely to avoid nested table rows
+    const tableWithoutCaption = tableHtml.replace(/<caption[^>]*>[\s\S]*?<\/caption>/gi, '');
+
+    const rows = [...tableWithoutCaption.matchAll(/<tr[^>]*>([\s\S]*?)<\/tr>/gi)];
 
     // Skip the header row (index 0)
     for (let i = 1; i < rows.length; i++) {
