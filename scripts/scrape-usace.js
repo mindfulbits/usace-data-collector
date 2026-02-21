@@ -2,18 +2,6 @@
 
 /**
  * USACE Hydropower Data Scraper — No-Browser Edition
- *
- * The USACE hydropower page is a classic ASP.NET WebForms page that uses
- * server-side postbacks (__doPostBack). There is no external API — the server
- * renders the data table as HTML in the POST response.
- *
- * Approach:
- *   1. GET the page to harvest __VIEWSTATE / __EVENTVALIDATION tokens
- *   2. POST with Plant_Selector to trigger date dropdown population
- *   3. POST with Date_Selector + Submit to get the generation table
- *   4. Parse the HTML table with regex (zero extra dependencies)
- *
- * No Puppeteer. No Chrome. No browser at all.
  */
 
 const https = require('https');
@@ -26,7 +14,7 @@ const BASE_URL = 'https://spatialdata.usace.army.mil/hydropower/';
 const BUFORD_PLANT_ID = '2';
 
 // ---------------------------------------------------------------------------
-// HTTP helper — built-in https only, zero dependencies
+// HTTP helper
 // ---------------------------------------------------------------------------
 
 function fetchPage(url, options = {}) {
@@ -40,7 +28,6 @@ function fetchPage(url, options = {}) {
             port: parsedUrl.port || (isHttps ? 443 : 80),
             path: parsedUrl.pathname + (parsedUrl.search || ''),
             method: options.method || 'GET',
-            // DoD sites use non-standard SSL cert chains — safe to bypass for known .army.mil domains
             rejectUnauthorized: false,
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
@@ -60,7 +47,6 @@ function fetchPage(url, options = {}) {
         }
 
         const req = lib.request(reqOptions, (res) => {
-            // Follow redirects
             if ([301, 302, 303, 307, 308].includes(res.statusCode) && res.headers.location) {
                 const loc = res.headers.location;
                 const redirectUrl = loc.startsWith('http')
@@ -91,7 +77,6 @@ function extractFormFields(html) {
     const fields = {};
     const targets = ['__VIEWSTATE', '__VIEWSTATEGENERATOR', '__EVENTVALIDATION', '__LASTFOCUS'];
     for (const field of targets) {
-        // Match both id= and name= attribute ordering variations
         const patterns = [
             new RegExp(`name="${field}"[^>]*value="([^"]*)"`, 'i'),
             new RegExp(`id="${field}"[^>]*value="([^"]*)"`, 'i'),
@@ -140,11 +125,9 @@ function parseGenerationTable(html) {
 
     while ((tableMatch = tableRe.exec(html)) !== null) {
         const rows = [...tableMatch[1].matchAll(/<tr[^>]*>([\s\S]*?)<\/tr>/gi)];
-
         for (let i = 1; i < rows.length; i++) {
             const cells = [...rows[i][1].matchAll(/<t[dh][^>]*>([\s\S]*?)<\/t[dh]>/gi)]
                 .map(c => c[1].replace(/<[^>]+>/g, '').trim());
-
             if (cells.length >= 2) {
                 const timeText = cells[0];
                 const genMatch = cells[1].match(/[\d.]+/);
@@ -161,11 +144,48 @@ function parseGenerationTable(html) {
                 }
             }
         }
-
         if (periods.length > 0) break;
     }
 
     return periods;
+}
+
+// ---------------------------------------------------------------------------
+// Debug helper — logs HTML structure to console and saves file
+// ---------------------------------------------------------------------------
+
+async function saveDebugInfo(outputDir, filename, html) {
+    try {
+        await fs.writeFile(path.join(outputDir, filename), html);
+        console.log(`  🔍 Debug file saved: ${filename} (${html.length} bytes)`);
+
+        // Log structural info so we can diagnose from Actions log alone
+        const tableCount = (html.match(/<table/gi) || []).length;
+        const formCount  = (html.match(/<form/gi)  || []).length;
+        const selectCount = (html.match(/<select/gi) || []).length;
+        console.log(`  📋 Structure: ${tableCount} tables, ${formCount} forms, ${selectCount} selects`);
+
+        // List every submit button and its name/value
+        const submitButtons = (html.match(/<input[^>]*type="submit"[^>]*/gi) || []);
+        console.log(`  🔘 Submit buttons (${submitButtons.length}):`);
+        submitButtons.forEach(btn => {
+            const nameMatch  = btn.match(/name="([^"]*)"/i);
+            const valueMatch = btn.match(/value="([^"]*)"/i);
+            console.log(`     name="${nameMatch ? nameMatch[1] : 'N/A'}" value="${valueMatch ? valueMatch[1] : 'N/A'}"`);
+        });
+
+        // Log all select element names
+        const selects = (html.match(/<select[^>]*name="([^"]*)"[^>]*/gi) || []);
+        console.log(`  📝 Select elements: ${selects.map(s => { const m = s.match(/name="([^"]*)"/i); return m ? m[1] : '?'; }).join(', ')}`);
+
+        // Check for any numbers that look like MW generation values (1-999)
+        const numMatches = [...html.matchAll(/>\s*(\d{1,3})\s*</g)].map(m => m[1]);
+        const plausibleMW = numMatches.filter(n => parseInt(n) > 0 && parseInt(n) < 1000);
+        console.log(`  ⚡ Numbers in HTML that could be MW values: ${[...new Set(plausibleMW)].slice(0, 20).join(', ')}`);
+
+    } catch (e) {
+        console.log(`  Could not save debug file: ${e.message}`);
+    }
 }
 
 // ---------------------------------------------------------------------------
@@ -178,6 +198,7 @@ class USACEScraper {
         this.bufordPlantId = BUFORD_PLANT_ID;
         this.outputDir = path.join(__dirname, '..', 'data');
         this.cookie = '';
+        this.debugSaved = false;
     }
 
     async init() {
@@ -186,7 +207,7 @@ class USACEScraper {
     }
 
     async scrapeData() {
-        // Step 1: GET initial page for tokens
+        // Step 1: GET initial page
         console.log('🌐 Fetching initial page...');
         const initial = await fetchPage(this.baseUrl);
         if (initial.status !== 200) throw new Error(`Initial GET returned HTTP ${initial.status}`);
@@ -197,11 +218,11 @@ class USACEScraper {
         console.log(`  Cookie: ${this.cookie ? 'yes' : 'none'}`);
 
         if (!formFields.__VIEWSTATE) {
-            await fs.writeFile(path.join(this.outputDir, 'debug-initial.html'), initial.body);
+            await saveDebugInfo(this.outputDir, 'debug-initial.html', initial.body);
             throw new Error('No __VIEWSTATE found — see debug-initial.html');
         }
 
-        // Step 2: POST to select plant (triggers date dropdown)
+        // Step 2: POST plant selection
         console.log(`🎯 Posting Plant_Selector = ${this.bufordPlantId}...`);
         const plantBody = new URLSearchParams({
             __EVENTTARGET:        'Plant_Selector',
@@ -229,11 +250,10 @@ class USACEScraper {
         console.log(`📅 Found ${dates.length} dates`);
 
         if (dates.length === 0) {
-            await fs.writeFile(path.join(this.outputDir, 'debug-plant-resp.html'), plantResp.body);
+            await saveDebugInfo(this.outputDir, 'debug-plant-resp.html', plantResp.body);
             throw new Error('No dates in Date_Selector — see debug-plant-resp.html');
         }
 
-        // Step 3: Scrape last 5 dates
         const results = {
             timestamp: new Date().toISOString(),
             plant: 'Buford Dam/Lake Sidney Lanier',
@@ -260,7 +280,6 @@ class USACEScraper {
             }
         }
 
-        // Statistics
         const allPeriods = Object.values(results.schedules).flatMap(s => s.periods);
         if (allPeriods.length > 0) {
             const gens = allPeriods.map(p => p.generation);
@@ -277,47 +296,63 @@ class USACEScraper {
     }
 
     async scrapeDateData(dateInfo, formFields) {
-        const body = new URLSearchParams({
-            __EVENTTARGET:        '',
-            __EVENTARGUMENT:      '',
-            __LASTFOCUS:          '',
-            __VIEWSTATE:          formFields.__VIEWSTATE          || '',
-            __VIEWSTATEGENERATOR: formFields.__VIEWSTATEGENERATOR || '',
-            __EVENTVALIDATION:    formFields.__EVENTVALIDATION    || '',
-            Plant_Selector:       this.bufordPlantId,
-            Date_Selector:        dateInfo.value,
-            Button1:              'Submit'   // submit button — if this fails check debug HTML for the real name
-        }).toString();
+        // Try multiple possible submit button names in case Button1 isn't right
+        const buttonNames = ['Button1', 'btnSubmit', 'Submit', 'SubmitButton', 'btnGo', 'btnView'];
 
-        const resp = await fetchPage(this.baseUrl, {
-            method: 'POST',
-            body,
-            cookie: this.cookie,
-            headers: { 'Referer': this.baseUrl }
-        });
+        for (const buttonName of buttonNames) {
+            const body = new URLSearchParams({
+                __EVENTTARGET:        '',
+                __EVENTARGUMENT:      '',
+                __LASTFOCUS:          '',
+                __VIEWSTATE:          formFields.__VIEWSTATE          || '',
+                __VIEWSTATEGENERATOR: formFields.__VIEWSTATEGENERATOR || '',
+                __EVENTVALIDATION:    formFields.__EVENTVALIDATION    || '',
+                Plant_Selector:       this.bufordPlantId,
+                Date_Selector:        dateInfo.value,
+                [buttonName]:         'Submit'
+            }).toString();
 
-        if (resp.status !== 200) throw new Error(`Date POST returned HTTP ${resp.status}`);
-        const newCookie = extractCookies(resp.headers);
-        if (newCookie) this.cookie = newCookie;
+            const resp = await fetchPage(this.baseUrl, {
+                method: 'POST',
+                body,
+                cookie: this.cookie,
+                headers: { 'Referer': this.baseUrl }
+            });
 
-        const newFormFields = extractFormFields(resp.body);
-        const periods = parseGenerationTable(resp.body);
+            if (resp.status !== 200) throw new Error(`Date POST returned HTTP ${resp.status}`);
+            const newCookie = extractCookies(resp.headers);
+            if (newCookie) this.cookie = newCookie;
 
-        // Save debug HTML for first date scrape to help diagnose issues
-        if (dateInfo === undefined || process.env.DEBUG_HTML) {
-            await fs.writeFile(
-                path.join(this.outputDir, `debug-date-${dateInfo.value}.html`),
-                resp.body
-            ).catch(() => {});
+            const newFormFields = extractFormFields(resp.body);
+            const periods = parseGenerationTable(resp.body);
+
+            // Always save debug HTML for the very first date request
+            if (!this.debugSaved) {
+                await saveDebugInfo(this.outputDir, 'debug-date-response.html', resp.body);
+                this.debugSaved = true;
+            }
+
+            if (periods.length > 0) {
+                console.log(`  (button name "${buttonName}" worked)`);
+                return {
+                    date: dateInfo.text,
+                    dateValue: dateInfo.value,
+                    success: true,
+                    periods,
+                    scrapedAt: new Date().toISOString(),
+                    _newFormFields: Object.keys(newFormFields).length > 0 ? newFormFields : formFields
+                };
+            }
         }
 
+        // No button name worked
         return {
             date: dateInfo.text,
             dateValue: dateInfo.value,
-            success: true,
-            periods,
+            success: false,
+            periods: [],
             scrapedAt: new Date().toISOString(),
-            _newFormFields: Object.keys(newFormFields).length > 0 ? newFormFields : formFields
+            _newFormFields: formFields
         };
     }
 
@@ -328,7 +363,6 @@ class USACEScraper {
 
         await fs.writeFile(outputFile, JSON.stringify(data, null, 2));
         console.log(`💾 Saved ${outputFile}`);
-
         await fs.writeFile(backupFile, JSON.stringify(data, null, 2));
         console.log(`💾 Backup saved`);
 
