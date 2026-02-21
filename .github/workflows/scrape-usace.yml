@@ -2,95 +2,43 @@ name: USACE Hydropower Data Scraper
 on:
   schedule:
     - cron: '0 */6 * * *'  # Every 6 hours
-  workflow_dispatch:  # Manual trigger for testing
-  
+  workflow_dispatch:       # Manual trigger for testing
+
 jobs:
   scrape:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
-    
+    timeout-minutes: 5     # Should complete in well under 1 minute now
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-        
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          
-      - name: Install system dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y \
-            libnss3-dev \
-            libatk-bridge2.0-dev \
-            libdrm-dev \
-            libxcomposite-dev \
-            libxdamage-dev \
-            libxrandr-dev \
-            libgbm-dev \
-            libxss-dev \
-            libasound2-dev
-          
-      - name: Create package.json if missing
-        run: |
-          if [ ! -f package.json ]; then
-            echo "Creating package.json..."
-            cat > package.json << 'EOF'
-          {
-            "name": "usace-hydropower-scraper",
-            "version": "1.0.0",
-            "description": "Automated scraper for USACE Hydropower Generation Schedules",
-            "main": "scripts/scrape-usace.js",
-            "scripts": {
-              "scrape": "node scripts/scrape-usace.js",
-              "test": "node scripts/test-scraper.js"
-            },
-            "dependencies": {
-              "puppeteer": "^21.0.0"
-            },
-            "engines": {
-              "node": ">=18.0.0"
-            }
-          }
-          EOF
-          fi
-          
-      - name: Install dependencies
-        run: |
-          npm install
-          # Verify Puppeteer installation
-          npx puppeteer browsers install chrome
-        
+
+      # No system deps needed — scraper uses only built-in Node.js https module
+      # No Puppeteer, no Chrome download, no browser at all
+
       - name: Create data directory
         run: mkdir -p data
-        
-      - name: Run startup test
-        run: node scripts/startup-test.js
-        env:
-          NODE_ENV: production
-          PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: false
-        
+
       - name: Run USACE scraper
         run: node scripts/scrape-usace.js
         env:
           NODE_ENV: production
-          PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: false
-          
+
       - name: Debug output
         if: always()
         run: |
-          echo "=== Directory contents ==="
-          ls -la
           echo "=== Data directory ==="
-          ls -la data/ || echo "No data directory"
-          echo "=== Node version ==="
-          node --version
-          echo "=== NPM version ==="
-          npm --version
-          
+          ls -la data/
+          echo "=== Latest summary ==="
+          cat data/summary.json 2>/dev/null || echo "No summary.json"
+
       - name: Commit and push data
         if: success()
         run: |
