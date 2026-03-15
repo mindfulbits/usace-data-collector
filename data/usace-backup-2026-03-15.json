@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-15T16:22:16.869Z",
+  "timestamp": "2026-03-15T20:19:06.332Z",
   "plant": "Buford Dam/Lake Sidney Lanier",
   "plantId": "2",
   "source": "USACE Hydropower Website (Fallback)",
@@ -29,7 +29,7 @@
           "source": "Fallback"
         }
       ],
-      "scrapedAt": "2026-03-15T16:22:16.883Z"
+      "scrapedAt": "2026-03-15T20:19:06.346Z"
     },
     "3/15/2026": {
       "date": "3/15/2026",
@@ -55,7 +55,7 @@
           "source": "Fallback"
         }
       ],
-      "scrapedAt": "2026-03-15T16:22:16.883Z"
+      "scrapedAt": "2026-03-15T20:19:06.346Z"
     }
   },
   "statistics": {
@@ -64,6 +64,6 @@
     "averageGeneration": 64,
     "peakGeneration": 117,
     "minGeneration": 42,
-    "scrapedAt": "2026-03-15T16:22:16.883Z"
+    "scrapedAt": "2026-03-15T20:19:06.346Z"
   }
 }
