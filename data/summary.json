@@ -1,165 +1,39 @@
 {
-  "lastUpdated": "2026-03-21T20:16:17.256Z",
+  "lastUpdated": "2026-03-22T01:22:14.972Z",
   "plant": "Buford Dam/Lake Sidney Lanier",
-  "totalSchedules": 7,
+  "totalSchedules": 2,
   "statistics": {
-    "totalDays": 7,
-    "scrapedAt": "2026-03-21T20:16:17.256Z",
-    "totalPeriods": 168,
-    "averageGeneration": 10,
-    "peakGeneration": 57,
-    "minGeneration": 0
+    "totalDays": 2,
+    "totalPeriods": 6,
+    "averageGeneration": 64,
+    "peakGeneration": 117,
+    "minGeneration": 42,
+    "scrapedAt": "2026-03-22T01:22:14.987Z"
   },
   "latestData": {
-    "date": "3/16/2026",
-    "dateValue": "3/16/2026",
-    "success": true,
+    "date": "3/21/2026",
+    "dateValue": "3/21/2026",
+    "success": false,
     "periods": [
       {
-        "time": "12:00 am - 1:00 am",
-        "generation": 6,
-        "status": "base",
-        "source": "USACE Real-time"
-      },
-      {
-        "time": "1:00 am - 2:00 am",
-        "generation": 6,
-        "status": "base",
-        "source": "USACE Real-time"
-      },
-      {
-        "time": "2:00 am - 3:00 am",
-        "generation": 6,
-        "status": "base",
-        "source": "USACE Real-time"
-      },
-      {
-        "time": "3:00 am - 4:00 am",
-        "generation": 6,
-        "status": "base",
-        "source": "USACE Real-time"
-      },
-      {
-        "time": "4:00 am - 5:00 am",
-        "generation": 6,
-        "status": "base",
-        "source": "USACE Real-time"
-      },
-      {
-        "time": "5:00 am - 6:00 am",
-        "generation": 6,
-        "status": "base",
-        "source": "USACE Real-time"
-      },
-      {
-        "time": "6:00 am - 7:00 am",
-        "generation": 6,
-        "status": "base",
-        "source": "USACE Real-time"
-      },
-      {
-        "time": "7:00 am - 8:00 am",
-        "generation": 0,
-        "status": "base",
-        "source": "USACE Real-time"
-      },
-      {
-        "time": "8:00 am - 9:00 am",
-        "generation": 0,
-        "status": "base",
-        "source": "USACE Real-time"
-      },
-      {
-        "time": "9:00 am - 10:00 am",
-        "generation": 0,
-        "status": "base",
-        "source": "USACE Real-time"
-      },
-      {
-        "time": "10:00 am - 11:00 am",
-        "generation": 0,
-        "status": "base",
-        "source": "USACE Real-time"
-      },
-      {
-        "time": "11:00 am - 12:00 pm",
-        "generation": 0,
-        "status": "base",
-        "source": "USACE Real-time"
-      },
-      {
-        "time": "12:00 pm - 1:00 pm",
-        "generation": 0,
-        "status": "base",
-        "source": "USACE Real-time"
-      },
-      {
-        "time": "1:00 pm - 2:00 pm",
-        "generation": 0,
-        "status": "base",
-        "source": "USACE Real-time"
-      },
-      {
-        "time": "2:00 pm - 3:00 pm",
-        "generation": 0,
-        "status": "base",
-        "source": "USACE Real-time"
-      },
-      {
-        "time": "3:00 pm - 4:00 pm",
-        "generation": 0,
-        "status": "base",
-        "source": "USACE Real-time"
-      },
-      {
-        "time": "4:00 pm - 5:00 pm",
-        "generation": 0,
-        "status": "base",
-        "source": "USACE Real-time"
-      },
-      {
         "time": "5:00 pm - 6:00 pm",
-        "generation": 0,
-        "status": "base",
-        "source": "USACE Real-time"
+        "generation": 42,
+        "status": "active",
+        "source": "Fallback"
       },
       {
         "time": "6:00 pm - 7:00 pm",
-        "generation": 0,
-        "status": "base",
-        "source": "USACE Real-time"
+        "generation": 117,
+        "status": "peak",
+        "source": "Fallback"
       },
       {
         "time": "7:00 pm - 8:00 pm",
-        "generation": 41,
+        "generation": 42,
         "status": "active",
-        "source": "USACE Real-time"
-      },
-      {
-        "time": "8:00 pm - 9:00 pm",
-        "generation": 51,
-        "status": "peak",
-        "source": "USACE Real-time"
-      },
-      {
-        "time": "9:00 pm - 10:00 pm",
-        "generation": 51,
-        "status": "peak",
-        "source": "USACE Real-time"
-      },
-      {
-        "time": "10:00 pm - 11:00 pm",
-        "generation": 51,
-        "status": "peak",
-        "source": "USACE Real-time"
-      },
-      {
-        "time": "11:00 pm - 12:00 pm",
-        "generation": 0,
-        "status": "base",
-        "source": "USACE Real-time"
+        "source": "Fallback"
       }
     ],
-    "scrapedAt": "2026-03-21T20:16:17.934Z"
+    "scrapedAt": "2026-03-22T01:22:14.987Z"
   }
 }
