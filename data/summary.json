@@ -1,18 +1,18 @@
 {
-  "lastUpdated": "2026-03-27T01:24:14.129Z",
+  "lastUpdated": "2026-03-27T05:28:59.021Z",
   "plant": "Buford Dam/Lake Sidney Lanier",
-  "totalSchedules": 7,
+  "totalSchedules": 6,
   "statistics": {
-    "totalDays": 7,
-    "scrapedAt": "2026-03-27T01:24:14.129Z",
-    "totalPeriods": 168,
+    "totalDays": 6,
+    "scrapedAt": "2026-03-27T05:28:59.021Z",
+    "totalPeriods": 144,
     "averageGeneration": 9,
     "peakGeneration": 58,
     "minGeneration": 0
   },
   "latestData": {
-    "date": "3/21/2026",
-    "dateValue": "3/21/2026",
+    "date": "3/22/2026",
+    "dateValue": "3/22/2026",
     "success": true,
     "periods": [
       {
@@ -89,14 +89,14 @@
       },
       {
         "time": "12:00 pm - 1:00 pm",
-        "generation": 0,
-        "status": "base",
+        "generation": 57,
+        "status": "peak",
         "source": "USACE Real-time"
       },
       {
         "time": "1:00 pm - 2:00 pm",
-        "generation": 0,
-        "status": "base",
+        "generation": 57,
+        "status": "peak",
         "source": "USACE Real-time"
       },
       {
@@ -143,14 +143,14 @@
       },
       {
         "time": "9:00 pm - 10:00 pm",
-        "generation": 57,
-        "status": "peak",
+        "generation": 0,
+        "status": "base",
         "source": "USACE Real-time"
       },
       {
         "time": "10:00 pm - 11:00 pm",
-        "generation": 57,
-        "status": "peak",
+        "generation": 0,
+        "status": "base",
         "source": "USACE Real-time"
       },
       {
@@ -160,6 +160,6 @@
         "source": "USACE Real-time"
       }
     ],
-    "scrapedAt": "2026-03-27T01:24:14.406Z"
+    "scrapedAt": "2026-03-27T05:28:59.283Z"
   }
 }
