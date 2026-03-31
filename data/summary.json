@@ -1,18 +1,18 @@
 {
-  "lastUpdated": "2026-03-31T01:25:38.083Z",
+  "lastUpdated": "2026-03-31T05:40:52.929Z",
   "plant": "Buford Dam/Lake Sidney Lanier",
-  "totalSchedules": 7,
+  "totalSchedules": 6,
   "statistics": {
-    "totalDays": 7,
-    "scrapedAt": "2026-03-31T01:25:38.083Z",
-    "totalPeriods": 168,
+    "totalDays": 6,
+    "scrapedAt": "2026-03-31T05:40:52.929Z",
+    "totalPeriods": 144,
     "averageGeneration": 8,
     "peakGeneration": 57,
     "minGeneration": 0
   },
   "latestData": {
-    "date": "3/25/2026",
-    "dateValue": "3/25/2026",
+    "date": "3/26/2026",
+    "dateValue": "3/26/2026",
     "success": true,
     "periods": [
       {
@@ -77,8 +77,8 @@
       },
       {
         "time": "10:00 am - 11:00 am",
-        "generation": 54,
-        "status": "peak",
+        "generation": 0,
+        "status": "base",
         "source": "USACE Real-time"
       },
       {
@@ -113,14 +113,14 @@
       },
       {
         "time": "4:00 pm - 5:00 pm",
-        "generation": 42,
-        "status": "active",
+        "generation": 0,
+        "status": "base",
         "source": "USACE Real-time"
       },
       {
         "time": "5:00 pm - 6:00 pm",
-        "generation": 42,
-        "status": "active",
+        "generation": 0,
+        "status": "base",
         "source": "USACE Real-time"
       },
       {
@@ -131,26 +131,26 @@
       },
       {
         "time": "7:00 pm - 8:00 pm",
-        "generation": 42,
+        "generation": 45,
         "status": "active",
         "source": "USACE Real-time"
       },
       {
         "time": "8:00 pm - 9:00 pm",
-        "generation": 0,
-        "status": "base",
+        "generation": 55,
+        "status": "peak",
         "source": "USACE Real-time"
       },
       {
         "time": "9:00 pm - 10:00 pm",
-        "generation": 0,
-        "status": "base",
+        "generation": 45,
+        "status": "active",
         "source": "USACE Real-time"
       },
       {
         "time": "10:00 pm - 11:00 pm",
-        "generation": 0,
-        "status": "base",
+        "generation": 42,
+        "status": "active",
         "source": "USACE Real-time"
       },
       {
@@ -160,6 +160,6 @@
         "source": "USACE Real-time"
       }
     ],
-    "scrapedAt": "2026-03-31T01:25:38.382Z"
+    "scrapedAt": "2026-03-31T05:40:53.304Z"
   }
 }
