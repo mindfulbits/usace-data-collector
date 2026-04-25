@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-25T12:41:07.585Z",
+  "timestamp": "2026-04-25T16:31:38.455Z",
   "plant": "Buford Dam/Lake Sidney Lanier",
   "plantId": "2",
   "source": "USACE Hydropower Website",
@@ -154,7 +154,7 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2026-04-25T12:41:07.859Z"
+      "scrapedAt": "2026-04-25T16:31:38.761Z"
     },
     "4/21/2026": {
       "date": "4/21/2026",
@@ -306,7 +306,7 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2026-04-25T12:41:08.147Z"
+      "scrapedAt": "2026-04-25T16:31:39.071Z"
     },
     "4/22/2026": {
       "date": "4/22/2026",
@@ -458,7 +458,7 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2026-04-25T12:41:08.434Z"
+      "scrapedAt": "2026-04-25T16:31:39.360Z"
     },
     "4/23/2026": {
       "date": "4/23/2026",
@@ -610,7 +610,7 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2026-04-25T12:41:08.719Z"
+      "scrapedAt": "2026-04-25T16:31:39.675Z"
     },
     "4/24/2026": {
       "date": "4/24/2026",
@@ -762,7 +762,7 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2026-04-25T12:41:09.090Z"
+      "scrapedAt": "2026-04-25T16:31:39.966Z"
     },
     "4/25/2026": {
       "date": "4/25/2026",
@@ -897,8 +897,8 @@
         },
         {
           "time": "9:00 pm - 10:00 pm",
-          "generation": 6,
-          "status": "base",
+          "generation": 42,
+          "status": "active",
           "source": "USACE Real-time"
         },
         {
@@ -914,14 +914,14 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2026-04-25T12:41:09.373Z"
+      "scrapedAt": "2026-04-25T16:31:40.259Z"
     }
   },
   "statistics": {
     "totalDays": 6,
-    "scrapedAt": "2026-04-25T12:41:07.585Z",
+    "scrapedAt": "2026-04-25T16:31:38.455Z",
     "totalPeriods": 144,
-    "averageGeneration": 8,
+    "averageGeneration": 9,
     "peakGeneration": 60,
     "minGeneration": 6
   }
