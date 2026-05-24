@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-05-24T09:47:41.459Z",
+  "timestamp": "2026-05-24T13:01:19.900Z",
   "plant": "Buford Dam/Lake Sidney Lanier",
   "plantId": "2",
   "source": "USACE Hydropower Website",
@@ -154,7 +154,7 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2026-05-24T09:47:41.772Z"
+      "scrapedAt": "2026-05-24T13:01:20.298Z"
     },
     "5/20/2026": {
       "date": "5/20/2026",
@@ -306,7 +306,7 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2026-05-24T09:47:42.167Z"
+      "scrapedAt": "2026-05-24T13:01:20.701Z"
     },
     "5/21/2026": {
       "date": "5/21/2026",
@@ -458,7 +458,7 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2026-05-24T09:47:42.678Z"
+      "scrapedAt": "2026-05-24T13:01:21.184Z"
     },
     "5/22/2026": {
       "date": "5/22/2026",
@@ -610,7 +610,7 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2026-05-24T09:47:43.190Z"
+      "scrapedAt": "2026-05-24T13:01:21.556Z"
     },
     "5/23/2026": {
       "date": "5/23/2026",
@@ -762,7 +762,7 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2026-05-24T09:47:43.508Z"
+      "scrapedAt": "2026-05-24T13:01:21.869Z"
     },
     "5/24/2026": {
       "date": "5/24/2026",
@@ -914,12 +914,12 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2026-05-24T09:47:44.028Z"
+      "scrapedAt": "2026-05-24T13:01:22.335Z"
     }
   },
   "statistics": {
     "totalDays": 6,
-    "scrapedAt": "2026-05-24T09:47:41.459Z",
+    "scrapedAt": "2026-05-24T13:01:19.900Z",
     "totalPeriods": 144,
     "averageGeneration": 9,
     "peakGeneration": 89,
