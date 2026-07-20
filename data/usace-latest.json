@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-20T13:48:33.167Z",
+  "timestamp": "2026-07-20T17:23:02.009Z",
   "plant": "Buford Dam/Lake Sidney Lanier",
   "plantId": "2",
   "source": "USACE Hydropower Website",
@@ -154,7 +154,7 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2026-07-20T13:48:33.644Z"
+      "scrapedAt": "2026-07-20T17:23:03.321Z"
     },
     "7/16/2026": {
       "date": "7/16/2026",
@@ -306,7 +306,7 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2026-07-20T13:48:34.045Z"
+      "scrapedAt": "2026-07-20T17:23:06.438Z"
     },
     "7/17/2026": {
       "date": "7/17/2026",
@@ -458,7 +458,7 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2026-07-20T13:48:34.421Z"
+      "scrapedAt": "2026-07-20T17:23:07.606Z"
     },
     "7/18/2026": {
       "date": "7/18/2026",
@@ -610,7 +610,7 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2026-07-20T13:48:34.818Z"
+      "scrapedAt": "2026-07-20T17:23:12.265Z"
     },
     "7/19/2026": {
       "date": "7/19/2026",
@@ -762,7 +762,7 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2026-07-20T13:48:35.327Z"
+      "scrapedAt": "2026-07-20T17:23:15.475Z"
     },
     "7/20/2026": {
       "date": "7/20/2026",
@@ -873,14 +873,14 @@
         },
         {
           "time": "5:00 pm - 6:00 pm",
-          "generation": 52,
-          "status": "peak",
+          "generation": 27,
+          "status": "active",
           "source": "USACE Real-time"
         },
         {
           "time": "6:00 pm - 7:00 pm",
-          "generation": 43,
-          "status": "active",
+          "generation": 6,
+          "status": "base",
           "source": "USACE Real-time"
         },
         {
@@ -909,20 +909,20 @@
         },
         {
           "time": "11:00 pm - 12:00 pm",
-          "generation": 6,
-          "status": "base",
+          "generation": 92,
+          "status": "peak",
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2026-07-20T13:48:35.649Z"
+      "scrapedAt": "2026-07-20T17:23:15.864Z"
     }
   },
   "statistics": {
     "totalDays": 6,
-    "scrapedAt": "2026-07-20T13:48:33.167Z",
+    "scrapedAt": "2026-07-20T17:23:02.009Z",
     "totalPeriods": 144,
     "averageGeneration": 9,
-    "peakGeneration": 89,
+    "peakGeneration": 92,
     "minGeneration": 0
   }
 }
