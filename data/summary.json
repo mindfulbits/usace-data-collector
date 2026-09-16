@@ -1,18 +1,18 @@
 {
-  "lastUpdated": "2026-09-16T02:25:47.447Z",
+  "lastUpdated": "2026-09-16T08:56:21.219Z",
   "plant": "Buford Dam/Lake Sidney Lanier",
-  "totalSchedules": 7,
+  "totalSchedules": 6,
   "statistics": {
-    "totalDays": 7,
-    "scrapedAt": "2026-09-16T02:25:47.447Z",
-    "totalPeriods": 168,
+    "totalDays": 6,
+    "scrapedAt": "2026-09-16T08:56:21.219Z",
+    "totalPeriods": 144,
     "averageGeneration": 9,
     "peakGeneration": 99,
     "minGeneration": 4
   },
   "latestData": {
-    "date": "9/10/2026",
-    "dateValue": "9/10/2026",
+    "date": "9/11/2026",
+    "dateValue": "9/11/2026",
     "success": true,
     "periods": [
       {
@@ -107,38 +107,38 @@
       },
       {
         "time": "3:00 pm - 4:00 pm",
-        "generation": 6,
+        "generation": 4,
         "status": "base",
         "source": "USACE Real-time"
       },
       {
         "time": "4:00 pm - 5:00 pm",
-        "generation": 4,
-        "status": "base",
+        "generation": 47,
+        "status": "active",
         "source": "USACE Real-time"
       },
       {
         "time": "5:00 pm - 6:00 pm",
-        "generation": 4,
-        "status": "base",
+        "generation": 47,
+        "status": "active",
         "source": "USACE Real-time"
       },
       {
         "time": "6:00 pm - 7:00 pm",
-        "generation": 44,
+        "generation": 49,
         "status": "active",
         "source": "USACE Real-time"
       },
       {
         "time": "7:00 pm - 8:00 pm",
-        "generation": 54,
-        "status": "peak",
+        "generation": 4,
+        "status": "base",
         "source": "USACE Real-time"
       },
       {
         "time": "8:00 pm - 9:00 pm",
-        "generation": 43,
-        "status": "active",
+        "generation": 4,
+        "status": "base",
         "source": "USACE Real-time"
       },
       {
@@ -160,6 +160,6 @@
         "source": "USACE Real-time"
       }
     ],
-    "scrapedAt": "2026-09-16T02:25:47.772Z"
+    "scrapedAt": "2026-09-16T08:56:23.430Z"
   }
 }
