@@ -1,18 +1,18 @@
 {
-  "lastUpdated": "2026-10-12T03:21:38.402Z",
+  "lastUpdated": "2026-10-12T11:27:52.959Z",
   "plant": "Buford Dam/Lake Sidney Lanier",
-  "totalSchedules": 7,
+  "totalSchedules": 6,
   "statistics": {
-    "totalDays": 7,
-    "scrapedAt": "2026-10-12T03:21:38.402Z",
-    "totalPeriods": 168,
+    "totalDays": 6,
+    "scrapedAt": "2026-10-12T11:27:52.959Z",
+    "totalPeriods": 144,
     "averageGeneration": 9,
-    "peakGeneration": 86,
+    "peakGeneration": 61,
     "minGeneration": 4
   },
   "latestData": {
-    "date": "10/6/2026",
-    "dateValue": "10/6/2026",
+    "date": "10/7/2026",
+    "dateValue": "10/7/2026",
     "success": true,
     "periods": [
       {
@@ -119,8 +119,8 @@
       },
       {
         "time": "5:00 pm - 6:00 pm",
-        "generation": 86,
-        "status": "peak",
+        "generation": 47,
+        "status": "active",
         "source": "USACE Real-time"
       },
       {
@@ -160,6 +160,6 @@
         "source": "USACE Real-time"
       }
     ],
-    "scrapedAt": "2026-10-12T03:21:38.675Z"
+    "scrapedAt": "2026-10-12T11:27:53.346Z"
   }
 }
