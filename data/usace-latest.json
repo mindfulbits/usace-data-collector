@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-11-03T21:21:23.506Z",
+  "timestamp": "2026-11-04T03:57:37.888Z",
   "plant": "Buford Dam/Lake Sidney Lanier",
   "plantId": "2",
   "source": "USACE Hydropower Website",
@@ -154,7 +154,7 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2026-11-03T21:21:23.894Z"
+      "scrapedAt": "2026-11-04T03:57:40.143Z"
     },
     "10/30/2026": {
       "date": "10/30/2026",
@@ -306,7 +306,7 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2026-11-03T21:21:24.281Z"
+      "scrapedAt": "2026-11-04T03:57:40.479Z"
     },
     "10/31/2026": {
       "date": "10/31/2026",
@@ -458,7 +458,7 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2026-11-03T21:21:24.668Z"
+      "scrapedAt": "2026-11-04T03:57:40.754Z"
     },
     "11/1/2026": {
       "date": "11/1/2026",
@@ -610,7 +610,7 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2026-11-03T21:21:25.058Z"
+      "scrapedAt": "2026-11-04T03:57:41.116Z"
     },
     "11/2/2026": {
       "date": "11/2/2026",
@@ -762,7 +762,7 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2026-11-03T21:21:25.595Z"
+      "scrapedAt": "2026-11-04T03:57:41.462Z"
     },
     "11/3/2026": {
       "date": "11/3/2026",
@@ -897,8 +897,8 @@
         },
         {
           "time": "9:00 pm - 10:00 pm",
-          "generation": 4,
-          "status": "base",
+          "generation": 42,
+          "status": "active",
           "source": "USACE Real-time"
         },
         {
@@ -914,7 +914,7 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2026-11-03T21:21:25.997Z"
+      "scrapedAt": "2026-11-04T03:57:41.692Z"
     },
     "11/4/2026": {
       "date": "11/4/2026",
@@ -1066,12 +1066,12 @@
           "source": "USACE Real-time"
         }
       ],
-      "scrapedAt": "2026-11-03T21:21:26.392Z"
+      "scrapedAt": "2026-11-04T03:57:42.033Z"
     }
   },
   "statistics": {
     "totalDays": 7,
-    "scrapedAt": "2026-11-03T21:21:23.506Z",
+    "scrapedAt": "2026-11-04T03:57:37.888Z",
     "totalPeriods": 168,
     "averageGeneration": 9,
     "peakGeneration": 120,
