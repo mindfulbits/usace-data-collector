@@ -1,10 +1,10 @@
 {
-  "lastUpdated": "2026-11-11T19:00:26.187Z",
+  "lastUpdated": "2026-11-12T01:44:01.329Z",
   "plant": "Buford Dam/Lake Sidney Lanier",
   "totalSchedules": 7,
   "statistics": {
     "totalDays": 7,
-    "scrapedAt": "2026-11-11T19:00:26.187Z",
+    "scrapedAt": "2026-11-12T01:44:01.330Z",
     "totalPeriods": 168,
     "averageGeneration": 11,
     "peakGeneration": 120,
@@ -160,6 +160,6 @@
         "source": "USACE Real-time"
       }
     ],
-    "scrapedAt": "2026-11-11T19:00:26.534Z"
+    "scrapedAt": "2026-11-12T01:44:01.720Z"
   }
 }
