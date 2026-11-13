@@ -1,24 +1,24 @@
 {
-  "lastUpdated": "2026-11-13T00:47:39.880Z",
+  "lastUpdated": "2026-11-13T11:43:18.186Z",
   "plant": "Buford Dam/Lake Sidney Lanier",
-  "totalSchedules": 7,
+  "totalSchedules": 6,
   "statistics": {
-    "totalDays": 7,
-    "scrapedAt": "2026-11-13T00:47:39.880Z",
-    "totalPeriods": 168,
-    "averageGeneration": 10,
+    "totalDays": 6,
+    "scrapedAt": "2026-11-13T11:43:18.186Z",
+    "totalPeriods": 144,
+    "averageGeneration": 11,
     "peakGeneration": 120,
     "minGeneration": 4
   },
   "latestData": {
-    "date": "11/7/2026",
-    "dateValue": "11/7/2026",
+    "date": "11/8/2026",
+    "dateValue": "11/8/2026",
     "success": true,
     "periods": [
       {
         "time": "12:00 am - 1:00 am",
-        "generation": 4,
-        "status": "base",
+        "generation": 62,
+        "status": "peak",
         "source": "USACE Real-time"
       },
       {
@@ -131,35 +131,35 @@
       },
       {
         "time": "7:00 pm - 8:00 pm",
-        "generation": 4,
-        "status": "base",
+        "generation": 42,
+        "status": "active",
         "source": "USACE Real-time"
       },
       {
         "time": "8:00 pm - 9:00 pm",
-        "generation": 4,
-        "status": "base",
+        "generation": 42,
+        "status": "active",
         "source": "USACE Real-time"
       },
       {
         "time": "9:00 pm - 10:00 pm",
-        "generation": 4,
-        "status": "base",
+        "generation": 44,
+        "status": "active",
         "source": "USACE Real-time"
       },
       {
         "time": "10:00 pm - 11:00 pm",
-        "generation": 4,
-        "status": "base",
+        "generation": 44,
+        "status": "active",
         "source": "USACE Real-time"
       },
       {
         "time": "11:00 pm - 12:00 pm",
-        "generation": 62,
-        "status": "peak",
+        "generation": 42,
+        "status": "active",
         "source": "USACE Real-time"
       }
     ],
-    "scrapedAt": "2026-11-13T00:47:40.271Z"
+    "scrapedAt": "2026-11-13T11:43:18.636Z"
   }
 }
